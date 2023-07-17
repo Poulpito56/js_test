@@ -4,24 +4,47 @@
   <body>
     <p>Clicker</p>
     <button
-    style="display: block;"
+    style="display: block; height: 100px; width: 100px; font-size: 40px;"
     class="clicker"
-    onclick="
-      const clickNumber = document.querySelector('.clicker')
-      clickNumber.innerHTML++
-      if (clickNumber.innerHTML > bestScore) {
-        bestScore++
-        localStorage.setItem('bestScore', bestScore)
-        document.querySelector('.bestScore').innerHTML = bestScore
-      }
-    ">
+    onclick="clickButton()">
       0
     </button>
-    <p style="display: inline-block;">Best score : </p>
-    <p style="display: inline-block;" class="bestScore">0</p>
+    <div>
+      <p style="display: inline-block;">Best score : </p>
+      <p style="display: inline-block;" class="bestScore">0</p>
+    </div>
+    <div>
+      <p style="display: inline-block;">Total clicks : </p>
+      <p style="display: inline-block;" class="totalClick">0</p>
+    </div>
+    <div>
+      <button onclick="resetCount()";>Reset</button>
+    </div>
     <script>
-      let bestScore = JSON.parse(localStorage.getItem('bestScore')) || 0
+      let bestScore = localStorage.getItem('bestScore') || 0
+      let totalClick = localStorage.getItem('totalClick') || 0
       document.querySelector('.bestScore').innerHTML = bestScore
+      document.querySelector('.totalClick').innerHTML = totalClick
+      function clickButton() {
+        totalClick++
+        localStorage.setItem('totalClick', totalClick)
+        document.querySelector('.totalClick').innerHTML = totalClick
+        const clickNumber = document.querySelector('.clicker')
+        clickNumber.innerHTML++
+        if (Number(clickNumber.innerHTML) > Number(bestScore)) {
+          bestScore++
+          localStorage.setItem('bestScore', bestScore)
+          document.querySelector('.bestScore').innerHTML = bestScore
+        }
+      }
+
+      function resetCount() {
+        totalClick = 0; bestScore = 0; clickNumber = 0;
+        document.querySelector('.bestScore').innerHTML = bestScore
+        document.querySelector('.totalClick').innerHTML = totalClick
+        document.querySelector('.clicker').innerHTML = 0
+      }
+
     </script>
   </body>
 </html>
