@@ -84,6 +84,7 @@ function deleteToDoList(n) {
 function initToDoList(num) {
   return `<div class="todo_list">
             <p class="title">${toDoLists[num].name}</p>
+            <input type="text" class="changeTitleInput">
             <button class="toDoListDeleteButton" onclick="deleteToDoList(${num})">&#215;</button>
             <div class="createTask">
               <input class="newTaskBar" placeholder="New task" onkeydown="if (event.key==='Enter'){addToDo(${num})}">

@@ -63,6 +63,16 @@ button:active {
   text-align: center;
 }
 
+.changeTitleInput {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 40px;
+  height: 40px;
+  border-radius: 25px;
+  opacity: 0;
+}
+
 .toDoListDeleteButton {
   position: absolute;
   right: 5px;
